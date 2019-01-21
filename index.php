@@ -52,6 +52,10 @@ require_once 'config/database.php';
                 <form action="camera.inc.php" method="POST">
                 <button type="submit" name="editing">Editing</button>
                 </form>
+                <br>
+                <form action="update.inc.php" method="POST">
+                <button type="submit" name="update">Update profile</button>
+                </form>
     </div>
 </section>
 <?php

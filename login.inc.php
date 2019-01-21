@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_POST['submit'])) {
 
 require_once "config/database.php";
@@ -17,6 +17,7 @@ require_once "config/database.php";
     {
         echo "Fields are empty";
     } elseif($yeah > 0) {
+        $_SESSION['uid'] = $uid;
         header("Location:index.php");
         } else {
             echo "Username/Password not valid";
