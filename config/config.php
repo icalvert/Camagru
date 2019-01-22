@@ -12,7 +12,8 @@
         password varchar(255) NOT NULL,
         verified INT,
         token varchar(32) NOT NULL,
-        reset varchar(32) NOT NULL
+        reset varchar(32) NOT NULL,
+        enotification INT
     )";
     $connection->exec($sql);
 ?>

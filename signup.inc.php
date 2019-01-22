@@ -35,7 +35,7 @@ if (isset($_POST['submit'])){
 
             $token = md5(rand(0,1000));
             $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users(username, email, password, verified, token, reset) VALUES ('$uid', '$email', '$hashedPwd', 0, '$token', '0')";
+            $sql = "INSERT INTO users(username, email, password, verified, token, reset, enotification) VALUES ('$uid', '$email', '$hashedPwd', 0, '$token', '0', '0')";
             $connection->exec($sql);
 
             $from = "camagru@gmail.com";

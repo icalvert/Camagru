@@ -43,11 +43,17 @@ if (isset($_POST['updateemail'])){
 
 if (isset($_POST['noti']) && isset($_POST['save_changes']))
 {
-    $email_notification = 1;
-    $_SESSION['email_notification'] = $email_notification;
-    echo "<script> alert ('email notifications switched on'); </script>";
-    header("refresh: 0.05; url=index.php");
+    $query = "SELECT username from users WHERE username='$uid'";
+    $okay = $connection->prepare($query);
+    $okay->execute();
+    $yeah = $okay->rowCount();
+    if($okay > 0){
+        $sql = $connection->prepare("UPDATE `users` SET enotification=1 WHERE username='$uid' OR  email='$uid'");
+        $sql->execute();
+        header("Location:index.php");
+    } else {
+        echo "Unable to handle this request.";
+    }
 
-    
 }
 ?>
