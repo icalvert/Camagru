@@ -16,4 +16,11 @@
         enotification INT
     )";
     $connection->exec($sql);
+
+    $query = "CREATE TABLE IF NOT EXISTS images (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username varchar(100) NOT NULL,
+        image longblob NOT NULL
+    )";
+    $connection->exec($query);
 ?>
