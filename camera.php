@@ -19,7 +19,11 @@
             <canvas id="canvas" width="400" height="300"></canvas>
             <img id="photo" src="https://www.placecage.com/c/400/300" alt="Photo">
         </div>
-
+        <div>
+        <form action="cam_save.php" method="POST"  id="form">
+            <input type="submit" value="Save" name="save"/>
+        </form>
+        </div>
         <script>
             var canvas;
             var context;
@@ -51,6 +55,29 @@
             photo.setAttribute('src', canvas.toDataURL('image/png'));
             });
 
+         </script>
+         <script>
+            document.getElementById('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+	        var canvas = document.getElementById("canvas");
+	        var dataUrl = canvas.toDataURL("image/png");
+
+        	var json = {
+		    image: dataUrl
+	}
+
+	        var xhr = new XMLHttpRequest();
+	        xhr.open('POST', 'cam_save.php', true);
+              xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        	xhr.onreadystatechange = function(data) {
+    		    if (xhr.readyState == 4 && xhr.status == 200) {
+			        console.log(this.responseText);
+        	    }
+        	}
+    var params = "image="+dataUrl;
+    xhr.send(params);
+
+});
          </script>
     </body>
 </html>
