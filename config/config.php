@@ -20,6 +20,7 @@
     $query = "CREATE TABLE IF NOT EXISTS images (
         id INT AUTO_INCREMENT PRIMARY KEY,
         username varchar(100) NOT NULL,
+        imagename varchar(100) NOT NULL,
         image mediumtext NOT NULL
     )";
     $connection->exec($query);
