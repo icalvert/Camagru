@@ -29,7 +29,7 @@ require_once 'config/database.php';
     }
     function saveImage()
     {
-      $query = "INSERT INTO images(name, image) VALUES ('$name', '$image')";
+      $query = "INSERT INTO images(name, imagename, image) VALUES ('$name', '$imageName', '$imageData')";
       $yeah = $connection->exec($query);
       if ($yeah) {
         echo "<br/>Image uploaded";
@@ -39,7 +39,6 @@ require_once 'config/database.php';
         echo "<br/>Image not uploaded.";
       }
     }
-
     ?>
   </body>
 </html>

@@ -24,6 +24,12 @@
             <input type="hidden" id="hidden" name="image" value="">
             <input type="submit" value="Save" name="save"/>
         </form>
+        <form method="POST" enctype="multipart/form-data">
+        <br/>
+        <input type="file" name="image">
+        <br/><br/>
+        <input type="submit" name="sumit" value="Upload">
+        </form>
         </div>
         <script>
             var canvas;
@@ -57,8 +63,36 @@
             var dataUrl = canvas.toDataURL("image/png");
             document.getElementById('hidden').value = dataUrl;
             });
+        </script>
+    <?php
+    if (isset($_POST['sumit'])) {
+      if (getimagesize($_FILES['image']['tmp_name'])== FALSE)
+      {
+        echo "please select an image";
+      }
+      else
+      {
+        $uid = $_SESSION['uid'];
+        $imageName = $_FILES['image']['name'];
+        $imageData= file_get_contents($_FILES['image']['tmp_name']);
+        $imageType = $_FILES['image']['type'];
 
-         </script>
+        if (substr($imageType,0,5) == "image") {
+            $query = "INSERT INTO images(name, image) VALUES ('$name', '$imageData')";
+            $connection->exec($sql);
+            echo "Image uploaded";
+        }
+        }
+    }
+    // function saveimage($name, $image)
+    // {
+    //     require_once 'config/database.php';
+    //     $sql = "INSERT INTO images(username, image) VALUES ('$uid', '$image')";
+    //     $connection->exec($sql);
+    //     echo "<br/>Image uploaded";
+    // }
+
+    ?>
     </body>
 </html>
 
