@@ -75,23 +75,16 @@
         $uid = $_SESSION['uid'];
         $imageName = $_FILES['image']['name'];
         $imageData= file_get_contents($_FILES['image']['tmp_name']);
+        $image = base64_encode($imageData);
         $imageType = $_FILES['image']['type'];
 
         if (substr($imageType,0,5) == "image") {
-            $query = "INSERT INTO images(username, imagename, image) VALUES ('$uid', '$imageName', '$imageData')";
+            $query = "INSERT INTO images(username, imagename, image) VALUES ('$uid', '$imageName', '$image')";
             $connection->exec($query);
             echo "Image uploaded";
         }
         }
     }
-    // function saveimage($name, $image)
-    // {
-    //     require_once 'config/database.php';
-    //     $sql = "INSERT INTO images(username, image) VALUES ('$uid', '$image')";
-    //     $connection->exec($sql);
-    //     echo "<br/>Image uploaded";
-    // }
-
     ?>
     </body>
 </html>
