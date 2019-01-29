@@ -19,9 +19,9 @@
             <canvas id="canvas" width="400" height="300"></canvas>
             <img id="photo" src="https://www.placecage.com/c/400/300" alt="Photo">
         </div>
-            <input onclick="testing()" type="image" src="https://alittlebityummy.com/wp-content/uploads/2015/11/Cheese-And-The-Low-FODMAP-Diet.jpg" name="sticker1" width="100" height="100" id="sticker1">
-            <input onclick="testing()" type="image" src="https://s3.amazonaws.com/applegate-assets-production-clone/2018/03/19/15/49/57/67db072a-4f5f-4298-a661-be8e135d0b7f/Cheese.jpg" name="sticker2" width="100" height="100" id="sticker2">
-            <input onclick="testing()" type="image" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/08/24/10/istock-531024761.jpg?w968h681" name="sticker3" width="100" height="100" id="sticker3">
+            <input onclick="testing()" type="image" src="stickers/cheese1.jpg" name="sticker1" width="100" height="100" id="sticker1">
+            <input onclick="testing()" type="image" src="stickers/cheese2.jpg" name="sticker2" width="100" height="100" id="sticker2">
+            <input onclick="testing()" type="image" src="stickers/cheese3.jpg" name="sticker3" width="100" height="100" id="sticker3">
 
         <div>
         <form action="cam_save.php" method="POST"  id="form">
@@ -44,6 +44,7 @@
             context = canvas.getContext('2d');
 
             video = document.getElementById("video");
+            sticker1 = document.getElementById("sticker1");
 
         if(navigator.mediaDevices.getUserMedia)
         {
@@ -68,6 +69,7 @@
             document.getElementById('hidden').value = dataUrl;
             });
         function testing() {
+            canvas = document.getElementById("canvas");
             context.drawImage(sticker1, 0, 0, 100, 100);
             photo.setAttribute('src', canvas.toDataURL('image/png'));
             var dataUrl = canvas.toDataURL("image/png");
