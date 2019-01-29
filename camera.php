@@ -19,9 +19,9 @@
             <canvas id="canvas" width="400" height="300"></canvas>
             <img id="photo" src="https://www.placecage.com/c/400/300" alt="Photo">
         </div>
-            <input onclick="testing()" type="image" src="stickers/cheese1.jpg" name="sticker1" width="100" height="100" id="sticker1">
-            <input onclick="testing()" type="image" src="stickers/cheese2.jpg" name="sticker2" width="100" height="100" id="sticker2">
-            <input onclick="testing()" type="image" src="stickers/cheese3.jpg" name="sticker3" width="100" height="100" id="sticker3">
+            <input onclick="testing(this.src)" type="image" src="stickers/cheese1.jpg" name="sticker1" width="100" height="100" id="sticker1">
+            <input onclick="testing(this.src)" type="image" src="stickers/cheese2.jpg" name="sticker2" width="100" height="100" id="sticker2">
+            <input onclick="testing(this.src)" type="image" src="stickers/cheese3.jpg" name="sticker3" width="100" height="100" id="sticker3">
 
         <div>
         <form action="cam_save.php" method="POST"  id="form">
@@ -44,7 +44,7 @@
             context = canvas.getContext('2d');
 
             video = document.getElementById("video");
-            sticker1 = document.getElementById("sticker1");
+            sticker1 = document.getElementById("sticker1").src;
 
         if(navigator.mediaDevices.getUserMedia)
         {
@@ -68,12 +68,14 @@
             var dataUrl = canvas.toDataURL("image/png");
             document.getElementById('hidden').value = dataUrl;
             });
-        function testing() {
+        function testing(src) {
+            img = new Image();
+            img.src = src;
             canvas = document.getElementById("canvas");
-            context.drawImage(sticker1, 0, 0, 100, 100);
+            context.drawImage(img, 0, 0, 100, 100);
             photo.setAttribute('src', canvas.toDataURL('image/png'));
             var dataUrl = canvas.toDataURL("image/png");
-            //document.getElementById('hidden').value = dataUrl;
+            document.getElementById('hidden').value = dataUrl;
         }
         </script>
 
