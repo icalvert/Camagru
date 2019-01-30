@@ -30,9 +30,9 @@
         </form>
         <form method="POST" enctype="multipart/form-data">
         <br/>
-        <input type="file" name="image">
+        <input type="file" name="image" id="upload_image">
         <br/><br/>
-        <input type="submit" name="sumit" value="Upload">
+        <input type="submit" name="sumit" value="Upload" id="upload">
         </form>
         </div>
         <script>
@@ -77,6 +77,28 @@
             var dataUrl = canvas.toDataURL("image/png");
             document.getElementById('hidden').value = dataUrl;
         }
+        var image_upload;
+        document.getElementById('upload_image').onchange = function(e) 
+            {
+                image_upload = new Image();
+                image_upload.onload = draw;
+                if(image_upload.onerror)
+                {
+                    alert("image upload error");
+                };
+                image_upload.src = URL.createObjectURL(this.files[0]);
+            };
+            function draw() 
+            {
+                canvas = document.getElementById("canvas");
+                context = canvas.getContext('2d');
+                context.drawImage(image_upload, 0, 0, 400, 300);
+                photo.setAttribute('src', canvas.toDataURL('image/png'));
+                var dataUrl = canvas.toDataURL("image/png");
+                document.getElementById('hidden').value = dataUrl;
+            }
+
+
         </script>
 
     <?php

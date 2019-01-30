@@ -60,4 +60,4 @@ require_once 'config/database.php';
 </section>
 <?php
     include_once 'footer.php';
-    ?>
+?>
