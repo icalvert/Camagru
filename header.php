@@ -34,9 +34,17 @@ include_once 'config/database.php';
                                     </form>
                                     <a href="signup.php">Sign up</a>';
                         }
-                    ?>
 
+                    ?>
                 </div> 
             </div>
         </nav>
+        <br>
+        <br>
+        <br>
+    <form action="camera.inc.php" method="POST">
+    <button type="submit" name="gallery">Gallery</button>
+    </form>
     </header>
+
+    
