@@ -30,7 +30,7 @@ require_once 'config/database.php';
                 <button type="submit" name="update">Update profile</button>
                 </form>
                 <br>
-                <form action="camera.inc.php" method="POST">
+                <form action="gallery.php" method="POST">
                 <button type="submit" name="gallery">Gallery</button>
                 </form>
     </div>

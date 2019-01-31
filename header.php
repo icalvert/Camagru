@@ -42,7 +42,7 @@ include_once 'config/database.php';
         <br>
         <br>
         <br>
-    <form action="camera.inc.php" method="POST">
+        <form action="gallery.php" method="POST">
     <button type="submit" name="gallery">Gallery</button>
     </form>
     </header>
