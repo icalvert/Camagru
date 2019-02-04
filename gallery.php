@@ -7,22 +7,17 @@ require_once 'config/database.php';
 <?php
 
 
-$sql = "SELECT * FROM images WHERE username='icalvert'";
+$sql = "SELECT * FROM images WHERE imagename='cheesey'";
 $okay = $connection->prepare($sql);
 $okay->execute();
-$result = $okay->fetch(PDO::FETCH_ASSOC);
-
-//header("Content-type: image/png");
-//echo base64_decode($result);
-echo '<img src="data:image/png;base64,'. $result['image'] .'"/>';
-
-print_r ($result['image']);
-//echo "<img src='getimage.php'>";
+$result = $okay->fetchAll();
 
 
-// while($result = $okay->fetch(PDO::FETCH_ASSOC)) {
-//     $IDstore = $row['image'];
-//     echo "<img src='getimage.php'>";
-// }
+foreach ($result as $fat=>$value)  {
+    echo '<img src="'. $value['image'] .'"/>';
+}
+echo "<img src='getimage.php'>";
+
+
 
 ?>
