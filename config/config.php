@@ -21,7 +21,8 @@
         id INT AUTO_INCREMENT PRIMARY KEY,
         username varchar(100) NOT NULL,
         imagename varchar(100) NOT NULL,
-        image mediumtext NOT NULL
+        image mediumtext NOT NULL,
+        likes INT(100) NOT NULL
     )";
     $connection->exec($query);
 ?>

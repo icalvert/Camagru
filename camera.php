@@ -116,7 +116,7 @@
         $imageType = $_FILES['image']['type'];
 
         if (substr($imageType,0,5) == "image") {
-            $query = "INSERT INTO images(username, imagename, image) VALUES ('$uid', '$imageName', '$image')";
+            $query = "INSERT INTO images(username, imagename, image, likes) VALUES ('$uid', '$imageName', '$image', '0')";
             $connection->exec($query);
             echo "Image uploaded";
         }
