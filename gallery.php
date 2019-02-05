@@ -37,6 +37,10 @@ if (isset($_POST['delete'])) {
     $okay->execute();
     $result = $okay->fetch(PDO::FETCH_ASSOC);
     $image = $result['image'];
+    $sql = "DELETE FROM images where image='$image'";
+    $yes = $connection->prepare($sql);
+    $yes->execute();
+    header("Refresh:10");
 }
 
 ?>
