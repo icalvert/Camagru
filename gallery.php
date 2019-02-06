@@ -33,8 +33,8 @@ if (isset($_POST['like'])) {
     $okay = $connection->prepare($query);
     $okay->execute();
     $result = $okay->fetch(PDO::FETCH_ASSOC);
-    $image = $result['image'];
-    $sqlquery = "UPDATE `images` SET likes='$likes+1' WHERE image='$image'";
+    $id = $result['id'];
+    $sqlquery = "UPDATE `images` SET likes='$likes+1' WHERE id='$id'";
     //print_r($result['likes']);
 
     $yes = $connection->prepare($sqlquery);
@@ -53,5 +53,19 @@ if (isset($_POST['delete'])) {
     $yes->execute();
     header("Refresh:10");
 }
+
+if (isset($_POST['submitcom'])) {
+    $query = "SELECT * FROM images WHERE imagename='cheesey'";
+    $yes = $connection->prepare($query);
+    $yes->execute();
+    $result = $yes->fetch(PDO::FETCH_ASSOC);
+    $id = $result['id'];
+    $comment = $_POST['comment'];
+    $yeah = "UPDATE `images` SET comments='$comment' WHERE id='$id'";
+    $hello = $connection->prepare($yeah);
+    $hello->execute();
+    print_r($comment);
+}
+
 
 ?>

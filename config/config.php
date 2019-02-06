@@ -22,7 +22,8 @@
         username varchar(100) NOT NULL,
         imagename varchar(100) NOT NULL,
         image mediumtext NOT NULL,
-        likes INT(100) NOT NULL
+        likes INT(100) NOT NULL,
+        comments varchar(255) NOT NULL
     )";
     $connection->exec($query);
 ?>

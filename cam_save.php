@@ -7,7 +7,7 @@ if(isset($_POST['save'])){
   $uid = $_SESSION['uid'];
   $imagename = "cheesey";
 
-  $sql = "INSERT INTO images(username, imagename, image, likes) VALUES ('$uid', '$imagename', '$image', '0')";
+  $sql = "INSERT INTO images(username, imagename, image, likes, comments) VALUES ('$uid', '$imagename', '$image', '0', '0')";
    $connection->exec($sql);
 
   echo "<script>history.back();</script>;";
