@@ -16,13 +16,13 @@ $result = $okay->fetchAll();
 
 // echo $likes;
 $_SESSION['uid'] = $uid;
-$comment = $_POST['comment'];
+// $comment = $_POST['comment'];
 
 
 foreach ($result as $fat=>$value)  {
     $likes = $value['likes'];
+    $comment = $value['comments'];
     $id = $value['id'];
-    echo $id;
     echo '<img src="'. $value['image'] .'"/>';
     echo "\n";
     echo "<form action='gallery.php' method='POST'>
@@ -31,8 +31,8 @@ foreach ($result as $fat=>$value)  {
             <input type='hidden' name=$uid>
             <textarea name='comment'></textarea>
             <button type='submit' name='submitcom' value=$id>Comment</button>
+            $comment
             </form>";
-   echo $comment;
 }
 
 if (isset($_POST['like'])) {
@@ -78,6 +78,7 @@ if (isset($_POST['submitcom'])) {
     $yeah = "UPDATE `images` SET comments='$comment' WHERE id='$id'";
     $hello = $connection->prepare($yeah);
     $hello->execute();
+    //  echo $comment;
 }
 
 
