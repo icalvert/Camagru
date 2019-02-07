@@ -78,7 +78,20 @@ if (isset($_POST['submitcom'])) {
     $yeah = "UPDATE `images` SET comments='$comment' WHERE id='$id'";
     $hello = $connection->prepare($yeah);
     $hello->execute();
-    //  echo $comment;
+
+    $sql = "SELECT * FROM users WHERE email='iancalvert0@gmail.com'";
+    $hey = $connection->prepare($sql);
+    $hey->execute();
+    $res = $hey->fetch(PDO::FETCH_ASSOC);
+    $email = $res['email'];
+
+    $from = "camagru@gmail.com";
+    $subject = "Comments";
+    $message = "Someone has commented '$comment' on your post";
+    $headers = "From:" . $from;
+    mail($email,$subject,$message, $headers);
+
+    header("Location: gallery.php");
 }
 
 
