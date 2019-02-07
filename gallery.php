@@ -29,8 +29,8 @@ foreach ($result as $fat=>$value)  {
             <button name='like' value=$id>Like($likes)</button>
             <button name='delete'>Delete</button>
             <input type='hidden' name=$uid>
-            <textarea name='comment' value=$id></textarea>
-            <button type='submit' name='submitcom'>Comment</button>
+            <textarea name='comment'></textarea>
+            <button type='submit' name='submitcom' value=$id>Comment</button>
             </form>";
    echo $comment;
 }
@@ -67,6 +67,7 @@ if (isset($_POST['delete'])) {
 }
 
 if (isset($_POST['submitcom'])) {
+    $id = $_POST['submitcom'];
     $query = "SELECT * FROM images WHERE id=$id";
     $yes = $connection->prepare($query);
     $yes->execute();
@@ -74,10 +75,9 @@ if (isset($_POST['submitcom'])) {
     $id = $result['id'];
     $image = $result['image'];
     $comment = $_POST['comment'];
-    $yeah = "UPDATE `images` SET comments='$comment' WHERE image='$image'";
+    $yeah = "UPDATE `images` SET comments='$comment' WHERE id='$id'";
     $hello = $connection->prepare($yeah);
     $hello->execute();
-    print_r($comment);
 }
 
 
