@@ -19,10 +19,7 @@ session_start();
                     <li><a href="index.php">Camagru</a><li>
                 </ul>
                 <div class="nav-login">
-                        
-                          <form action="logout.inc.php" method="POST">
-                                <button type="submit" name="logout">Logout</button>
-                          </form>
+                        <a href="logout.inc.php">Logout</a>
                 </div> 
             </div>
         </nav>

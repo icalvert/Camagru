@@ -1,6 +1,9 @@
 <?php
      include_once 'loggedin.php';
      session_start();
+     if (!isset($_SESSION['uid'])){
+         header("Location: header.php");
+     }
 ?>
 
 <!DOCTYPE html>
