@@ -16,12 +16,22 @@ require_once "config/database.php";
     if ($_POST['uid'] == "" || $_POST['pwd'] == "")
     {
         echo "Fields are empty";
-    } elseif($yeah > 0) {
-        $_SESSION['uid'] = $uid;
-        header("Location:index.php");
-        } else {
-            echo "Username/Password not valid";
+    } if ($yeah < 1) {
+        header("Location: index.php?login=error");
+        exit();
+    } else {
+        if ($result = $okay->fetch(PDO::FETCH_ASSOC)) {
+            $hashedPwdCheck = password_verify($pwd, $result['password']);
+            if ($hashedPwdCheck == false) {
+                echo "Password is incorrect";
+                exit();
+            } elseif ($hashedPwdCheck == true) {
+                $_SESSION['uid'] = $uid;
+                header("Location: index.php");
+                exit();
+            }
         }
+    }
 }
 
 ?>
