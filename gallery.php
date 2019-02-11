@@ -1,29 +1,46 @@
 <?php
 session_start();
 include 'config/database.php';
-// if (!isset($_SESSION['uid'])){
-//     include_once 'header.php';
-//     $sql = "SELECT * FROM images WHERE imagename='cheesey'";
-//     $okay = $connection->prepare($sql);
-//     $okay->execute();
-//     $result = $okay->fetchAll();
-//     //$likes = $_POST['likes'];
-//     // print_r($result);
+$uid = $_SESSION['uid'];
+if (!isset($_SESSION['uid'])){
+    include_once 'header.php';
+    $sql = "SELECT * FROM images WHERE imagename='cheesey'";
+    $okay = $connection->prepare($sql);
+    $okay->execute();
+    $result = $okay->fetchAll();
+    //$likes = $_POST['likes'];
+    // print_r($result);
 
-//     // echo $likes;
-//     $_SESSION['uid'] = $uid;
-//     // $comment = $_POST['comment'];
+    // echo $likes;
+    $_SESSION['uid'] = $uid;
+    // $comment = $_POST['comment'];
 
-
-//     foreach ($result as $fat=>$value)  {
-//         $likes = $value['likes'];
-//         $comment = $value['comments'];
-//         $id = $value['id'];
-//         echo '<img src="'. $value['image'] .'"/>';
-//         echo "\n";
-//     }
-//     exit();
-// }
+    try{
+    foreach ($result as $fat=>$value)  {
+        $likes = $value['likes'];
+        $comment = $value['comments'];
+        $id = $value['id'];
+        if (isset($_GET['page'])){
+            $page = $_GET['page'];
+          }
+          else $page = 1;
+          if ($fat <= ($page * 5) - 1 && $fat >= ($page * 5 - 5)){
+        echo '<img src="'. $value['image'] .'"/>';
+        echo "\n";
+          }
+    }
+    echo '
+    <li><a href="gallery.php?page=1">1</a></li>
+    <li><a href="gallery.php?page=2">2</a></li>
+    <li><a href="gallery.php?page=3">3</a></li>
+    <li><a href="gallery.php?page=4">4</a></li>
+    <li><a href="gallery.php?page=5">5</a></li>';
+    exit();
+    }
+    catch(Exception $e) {
+        echo 'Message: ' .$e->getMessage();
+      }
+}
 
 ?>
 
@@ -47,11 +64,11 @@ try{
         $likes = $value['likes'];
         $comment = $value['comments'];
         $id = $value['id'];
-        /*if (isset($_GET['page'])){
+        if (isset($_GET['page'])){
             $page = $_GET['page'];
           }
           else $page = 1;
-          if ($fat <= ($page * 5) - 1 && $fat >= ($page * 5 - 5)){*/
+          if ($fat <= ($page * 5) - 1 && $fat >= ($page * 5 - 5)){
         echo '<img src="'. $value['image'] .'"/>';
         echo "\n";
         echo "<form action='gallery.php' method='POST'>
@@ -64,13 +81,13 @@ try{
                 </form>";
           }
     }
-    /*echo '
+    echo '
     <li><a href="gallery.php?page=1">1</a></li>
     <li><a href="gallery.php?page=2">2</a></li>
     <li><a href="gallery.php?page=3">3</a></li>
     <li><a href="gallery.php?page=4">4</a></li>
     <li><a href="gallery.php?page=5">5</a></li>';
-}*/
+}
 catch(Exception $e) {
     echo 'Message: ' .$e->getMessage();
   }
